@@ -12,3 +12,5 @@ Root repository for the navigation
 # CheatSheets
 - [VDM Annotations](https://github.com/zzvikesh/index/blob/main/CheatSheets/VDM%20Annotations.md)
 
+# Others
+- [Deploy Fiori App using VSCode and Metadata](https://github.com/zzvikesh/index/blob/main/Others/Deploy%20Fiori%20App%20using%20VSCode%20and%20Metadata.md)
