@@ -5,7 +5,7 @@ Root repository for the navigation
 - [Visual Studio Code Setup](https://help.sap.com/docs/SAP_FIORI_tools/17d50220bcd848aa854c9c182d65b699/17efa217f7f34a9eba53d7b209ca4280.html)
 - ADT 
 
-# Programming
+# SAP Programming
 - [ABAP Data Modelling (VDMs)](https://github.com/zzvikesh/index/blob/main/Programming/ABAP%20Data%20Modelling%20(VDMs).md)
 
 # App Development
