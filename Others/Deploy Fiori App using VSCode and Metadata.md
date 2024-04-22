@@ -104,26 +104,29 @@ Enabling flexible column layout.
 
 Open the **Integrated Terminal**.
 
-
 [UI5 CLI](https://sap.github.io/ui5-tooling/v2/pages/CLI/#ui5-build)
 
 `npx ui5 build -a`
 
 **dist** folder is created.
 
+![image](https://github.com/zzvikesh/index/assets/167571098/903e64e3-08f2-4822-b481-f9d518b02873)
 
 # Upload BSP Application to the System
 
+![image](https://github.com/zzvikesh/index/assets/167571098/29ec6b33-639e-483e-89ae-0cca4e03e128)
 
+![image](https://github.com/zzvikesh/index/assets/167571098/6674b4bf-38e6-47ad-a056-55abbe978e3e)
 
----
+![image](https://github.com/zzvikesh/index/assets/167571098/cb1e3410-e323-4704-b63e-e97dbcbdf130)
 
-
----
-
-
----
+![image](https://github.com/zzvikesh/index/assets/167571098/d6a7a8a6-4795-4fcc-99b2-a852b0ffce40)
 
 # FLP Configuration
 
+![image](https://github.com/zzvikesh/index/assets/167571098/d284a1a3-5daf-4423-86d6-6c04590ebd2d)
+
+![image](https://github.com/zzvikesh/index/assets/167571098/75cf86bf-8033-456a-9066-2726db963c20)
+
+> Parameters can also be maintained for auto populating fields during cross app navigation.
 
