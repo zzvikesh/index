@@ -79,14 +79,13 @@ File -> Open Folder -> `cust.aims` (New Created).
 
 ![image](https://github.com/zzvikesh/index/assets/167571098/1754d4cb-0f73-49c0-a905-a8944f839352)
 
-`"enhanceI18n": "i18n/`Entity`OPi18n.properties"`
-
-![image](https://github.com/zzvikesh/index/assets/167571098/e81301bb-4166-45a7-959f-b3e01fc3124a)
-
 ## EntityOPi18n.properties
 
 [Localization of UI Texts | SAP Help Portal](https://help.sap.com/docs/ABAP_PLATFORM_NEW/468a97775123488ab3345a0c48cadd8f/b8cb649973534f08a6047692f8c6830d.html)
 
+`"enhanceI18n": "i18n/`Entity`OPi18n.properties"`
+
+![image](https://github.com/zzvikesh/index/assets/167571098/e81301bb-4166-45a7-959f-b3e01fc3124a)
 
 ## Page Map
 
@@ -113,6 +112,8 @@ Open the **Integrated Terminal**.
 ![image](https://github.com/zzvikesh/index/assets/167571098/903e64e3-08f2-4822-b481-f9d518b02873)
 
 # Upload BSP Application to the System
+
+Report /UI5/UI5_REPOSITORY_LOAD.
 
 ![image](https://github.com/zzvikesh/index/assets/167571098/29ec6b33-639e-483e-89ae-0cca4e03e128)
 
