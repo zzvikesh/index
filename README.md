@@ -18,6 +18,11 @@ Root repository for the navigation
 
 # Code Base
 
+# Tips and Tricks
 
-# Others
+| &nbsp; | &nbsp; |
+| --- | --- |
+| CDS Annotations Usage | `DD_CDS_ELEMENT_ANNOTATIONS` & `DD_CDS_HEADER_ANNOTATIONS` |
+
+
 - [Deploy Fiori App using VSCode and Metadata](https://github.com/zzvikesh/index/blob/main/Others/Deploy%20Fiori%20App%20using%20VSCode%20and%20Metadata.md)
