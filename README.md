@@ -21,6 +21,7 @@ Root repository for the navigation
 # Tips and Tricks
 
 - [Deploy Fiori App using VSCode and Metadata](https://github.com/zzvikesh/index/blob/main/Others/Deploy%20Fiori%20App%20using%20VSCode%20and%20Metadata.md)
+- [Finding SEGW Gateway Project for Standard OData Service ](https://github.com/zzvikesh/index/blob/main/Others/Finding%20SEGW%20Gateway%20Project%20for%20Standard%20OData%20Service.md)
 
 | &nbsp; | &nbsp; |
 | --- | --- |
