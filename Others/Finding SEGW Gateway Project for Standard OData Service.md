@@ -39,7 +39,7 @@ Execute Gateway client.
 
 Check Service Implementation.
 
-> We can directly execute Gateway Client using Transaction Code `/IWFND/GW_CLIENT` and then manually giving the Service Name form Fiori App Library.
+> We can directly execute Gateway Client using Transaction Code `/IWFND/GW_CLIENT` and then manually enter the Service Name from Fiori App Library.
 
 ![image (4)](https://github.com/zzvikesh/index/assets/167571098/4861184c-2139-4024-b9c3-d6e89f3c7c13)
 
