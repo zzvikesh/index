@@ -21,7 +21,11 @@ Check the service under Runtime Artifacts.
 
 ![image (1)](https://github.com/zzvikesh/index/assets/167571098/d20ceef3-a59b-4c75-8fc3-f60e7afff385)
 
-Service is not matching with our the service listed on Fiori App Library. 
+```
+
+Service under Gateway Project is not the same listed on Fiori App Library.
+
+```
 
 # Approach 2 
 
