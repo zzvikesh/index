@@ -1,7 +1,5 @@
 # Extend CDS View C_CustomerList_2
 
-Use Adaptation to Fix the column on the application.
-
 <img width="241" alt="image" src="https://github.com/zzvikesh/index/assets/167571098/8a97d1da-0008-449b-951a-116c7eb75798">
 
 Value help can be added to the above extension, something like below:
