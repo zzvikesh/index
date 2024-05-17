@@ -4,7 +4,7 @@ Key User has been enabled using:
 - ATP Setup on On Premise and Private Cloud.
 - Extensibility Settings App on Public Cloud.
 
-# Official Document
+# Official Document for Stepwise Walkthrough
 
 [Assign Extensions to a Software Package and Transport Request.pdf](https://github.com/zzvikesh/index/files/15349172/Assign.Extensions.to.a.Software.Package.and.Transport.Request.pdf)
 
