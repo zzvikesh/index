@@ -8,7 +8,7 @@ Key User has been enabled using:
 
 [Assign Extensions to a Software Package and Transport Request.pdf](https://github.com/zzvikesh/index/files/15349172/Assign.Extensions.to.a.Software.Package.and.Transport.Request.pdf)
 
-# Steps to Transport Key User Extension in On Premise and Private Cloud
+# Transporting Key User Extension in On Premise and Private Cloud
 
 **Configure Software Packages**
 
