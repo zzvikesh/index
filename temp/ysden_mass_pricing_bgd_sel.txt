@@ -1,0 +1,29 @@
+***********************************************************************
+* Program Title    : E0742.OTC : YSDEN_MASS_PRICING_CONDT_BGD         *
+* Created By       : GUPABH05                                         *
+* Date             : 10/AUG/2017                                      *
+* Type             : Executable Program                               *
+* Description      : Mass Pricing procedure condition upload program  *
+*                    Progam will submit a background job to process   *
+* Transaction Code : N/A                                              *
+* Special Notes    : N/A                                              *
+* Cloned Prog. Information : N/A                                      *
+***********************************************************************
+*---------------------------------------------------------------------*
+* Modification History                                                *
+*---------------------------------------------------------------------*
+*  Date        Programmer    Description     Project/Phase/TR         *
+*---------------------------------------------------------------------*
+*10/AUG/2017  GUPABH05       Initial       PMOD/Small Build/DE1K934378
+*18/Dec/2017   KINSRA01     ENHC0048693    PMOD/D&E/DE1K936435
+*---------------------------------------------------------------------*
+PARAMETERS:  p_kschl TYPE kschl,  "Condition Type
+             p_tab   TYPE tabname.  "Database A* table
+* Begin of Changes by KINSRA1 for ENHC0048693
+* Create radio button for conditions and scales
+PARAMETERS: rb_conds RADIOBUTTON GROUP rs DEFAULT 'X',
+            rb_scles RADIOBUTTON GROUP rs.
+* End of Changes by KINSRA1 for ENHC0048693
+* Begin of Changes by KUMKES01 for ENHC0100334
+PARAMETERS: p_delete TYPE xfeld NO-DISPLAY.
+* End of Changes by KUMKES01 for ENHC0100334
