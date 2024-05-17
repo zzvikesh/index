@@ -1,0 +1,413 @@
+***********************************************************************
+* Program Title    : E0742.OTC : YSDEN_MASS_PRICING_CONDT_BGD         *
+* Created By       : GUPABH05                                         *
+* Date             : 10/AUG/2017                                      *
+* Type             : Executable Program                               *
+* Description      : Mass Pricing procedure condition upload program  *
+*                    Progam will submit a background job to process   *
+* Transaction Code : N/A                                              *
+* Special Notes    : N/A                                              *
+* Cloned Prog. Information : N/A                                      *
+***********************************************************************
+*---------------------------------------------------------------------*
+* Modification History                                                *
+*---------------------------------------------------------------------*
+*  Date        Programmer    Description     Project/Phase/TR         *
+*---------------------------------------------------------------------*
+*10/AUG/2017  GUPABH05       Initial       PMOD/Small Build/DE1K934378*
+*18/Dec/2017   KINSRA01     ENHC0048693    PMOD/D&E/DE1K936435
+*16/JAN/2019  DUBSWA02      Story PB-117   PMOD2/Ord Managt/DE9K900999
+*---------------------------------------------------------------------*
+*&---------------------------------------------------------------------*
+*&  TYPE DECLARATION
+*&---------------------------------------------------------------------*
+TYPES: BEGIN OF gty_mvke,
+         matnr TYPE matnr,         "Material
+         vkorg TYPE vkorg,         "Sales Organization
+         vtweg TYPE vtweg,         "Distribution Channel
+       END OF gty_mvke,
+
+       BEGIN OF gty_tvarvc,
+         fieldname   TYPE string,  "For TVARVC
+         fieldname_n TYPE string,  "For TVARVC
+       END OF gty_tvarvc,
+
+       " Str for where clause
+       BEGIN OF gty_where,
+         where_clause TYPE char72,  "Where Clause
+       END OF gty_where,
+
+       BEGIN OF gty_knumh,
+         knumh     TYPE knumh,      "Condition record Number
+         old_datbi TYPE datbi,      "Old Valid TO
+         old_datab TYPE datab,      "Old Valid from
+         old_stfkz TYPE stfkz,      "Scale Type
+         old_kzbzg TYPE kzbzg,      "Scale basis indicator
+         old_krech TYPE krech,      "Calculation Type
+         old_kbetr TYPE kbetr_kond, "Rate
+         old_konwa TYPE konwa,      "Rate Unit
+         old_kpein TYPE kpein,      "Condition Pricing Unit
+         old_kmein TYPE kmein,      "Condition unit
+         old_kosrt TYPE kosrt,      "Search Term
+       END OF gty_knumh,
+
+       BEGIN OF gty_konp,
+         knumh  TYPE knumh,         "Condition record Number
+         stfkz  TYPE stfkz,         "Scale Type
+         kzbzg  TYPE kzbzg,         "Scale basis indicator
+         krech  TYPE krech,         "Calculation Type
+         kbetr  TYPE kbetr_kond,    "Rate
+         konwa  TYPE konwa,         "Rate Unit
+         kpein  TYPE kpein,         "Condition Pricing Unit
+         kmein  TYPE kmein,         "Condition unit
+         zterm  TYPE dzterm,        "Payment Term
+         anzauf TYPE anzauf,        "Number of Sales Order
+       END OF   gty_konp,
+
+       BEGIN OF gty_atable,
+         datbi TYPE datbi,          "Valid To
+         datab TYPE datab,          "Valid From
+         knumh TYPE knumh,          "Condition Record Number
+       END OF gty_atable,
+
+       BEGIN OF gty_kosrt,
+         knumh TYPE knumh,          "Condition Record Number
+         kosrt TYPE kosrt,          "Search Term
+       END OF gty_kosrt,
+
+       BEGIN OF gty_vakey,
+         knumh   TYPE knumh,        "Condition Record Number
+         ernam   TYPE ernam,        "Created By
+         erdat   TYPE erdat,        "Created Date
+         kvewe   TYPE kvewe,        "Usage of the condition table
+         kotabnr TYPE kotabnr,      "Condition table
+         kappl   TYPE kappl,        "Application
+         kschl   TYPE kscha,        "Condition Type
+         vakey   TYPE vakey,        "Variable Key
+         datab   TYPE datab,        "Valid From
+         datbi   TYPE datbi,        "Valid To
+         kosrt   TYPE kosrt,        "Search Term
+       END OF gty_vakey,
+
+       BEGIN OF gty_xml_line,
+         data(255) TYPE x,          "Email Data
+       END OF gty_xml_line,
+
+       BEGIN OF gty_t685a,
+         kschl TYPE kscha,          "Condition Type
+         krech TYPE krech,          "Calculation Type
+         knega TYPE knega,          "Plus/minus sign of the cond. amount
+       END OF gty_t685a,
+* Begin of Changes by KINSRA1 for ENHC0048693
+       BEGIN OF gty_konw,
+         knumh TYPE knumh,
+         kopos TYPE kopos,
+         klfn1 TYPE klfn1,
+         kstbw TYPE kstbw,
+         kbetr TYPE kbetr,
+       END OF gty_konw,
+       BEGIN OF gty_konm,
+         knumh TYPE knumh,
+         kopos TYPE kopos,
+         klfn1 TYPE klfn1,
+         kstbm TYPE kstbm,
+         kbetr TYPE kbetr,
+       END OF gty_konm,
+       BEGIN OF gty_konp_scale,
+         knumh  TYPE knumh,
+         kopos  TYPE kopos,
+         kschl  TYPE kschl,
+         stfkz  TYPE stfkz,
+         kzbzg  TYPE kzbzg,
+         konms  type konms,
+         konws  TYPE konws,
+         krech  TYPE krech,
+         kbetr  TYPE kbetr_kond, " Rate
+         konwa  TYPE konwa,
+         kpein  TYPE kpein,
+         kmein  TYPE kmein,
+         zterm  TYPE dzterm, "INS by GUPABH05 for ENHC0043981
+         anzauf TYPE anzauf, "INS by GUPABH05 for ENHC0043981
+       END OF gty_konp_scale,
+       BEGIN OF gty_konw_scale,
+         knumh   TYPE knumh,
+         kschl   TYPE kschl,
+         kstbw1  TYPE kstbw,
+         konws1  TYPE konws,
+         kbetr1  TYPE kbetr,
+         konwa1  TYPE konwa,
+         kstbw2  TYPE kstbw,
+         konws2  TYPE konws,
+         kbetr2  TYPE kbetr,
+         konwa2  TYPE konwa,
+         kstbw3  TYPE kstbw,
+         konws3  TYPE konws,
+         kbetr3  TYPE kbetr,
+         konwa3  TYPE konwa,
+         kstbw4  TYPE kstbw,
+         konws4  TYPE konws,
+         kbetr4  TYPE kbetr,
+         konwa4  TYPE konwa,
+         kstbw5  TYPE kstbw,
+         konws5  TYPE konws,
+         kbetr5  TYPE kbetr,
+         konwa5  TYPE konwa,
+         kstbw6  TYPE kstbw,
+         konws6  TYPE konws,
+         kbetr6  TYPE kbetr,
+         konwa6  TYPE konwa,
+         kstbw7  TYPE kstbw,
+         konws7  TYPE konws,
+         kbetr7  TYPE kbetr,
+         konwa7  TYPE konwa,
+         kstbw8  TYPE kstbw,
+         konws8  TYPE konws,
+         kbetr8  TYPE kbetr,
+         konwa8  TYPE konwa,
+         kstbw9  TYPE kstbw,
+         konws9  TYPE konws,
+         kbetr9  TYPE kbetr,
+         konwa9  TYPE konwa,
+         kstbw10 TYPE kstbw,
+         konws10 TYPE konws,
+         kbetr10 TYPE kbetr,
+         konwa10 TYPE konwa,
+       END OF gty_konw_scale,
+       BEGIN OF gty_konm_scale,
+         knumh   TYPE knumh,
+         kschl   TYPE kschl,
+         kstbm1  TYPE kstbm,
+         konms1  TYPE konms,
+         kbetr1  TYPE kbetr,
+         konwa1  TYPE konwa,
+         kstbm2  TYPE kstbm,
+         konms2  TYPE konms,
+         kbetr2  TYPE kbetr,
+         konwa2  TYPE konwa,
+         kstbm3  TYPE kstbm,
+         konms3  TYPE konms,
+         kbetr3  TYPE kbetr,
+         konwa3  TYPE konwa,
+         kstbm4  TYPE kstbm,
+         konms4  TYPE konms,
+         kbetr4  TYPE kbetr,
+         konwa4  TYPE konwa,
+         kstbm5  TYPE kstbm,
+         konms5  TYPE konms,
+         kbetr5  TYPE kbetr,
+         konwa5  TYPE konwa,
+         kstbm6  TYPE kstbm,
+         konms6  TYPE konms,
+         kbetr6  TYPE kbetr,
+         konwa6  TYPE konwa,
+         kstbm7  TYPE kstbm,
+         konms7  TYPE konms,
+         kbetr7  TYPE kbetr,
+         konwa7  TYPE konwa,
+         kstbm8  TYPE kstbm,
+         konms8  TYPE konms,
+         kbetr8  TYPE kbetr,
+         konwa8  TYPE konwa,
+         kstbm9  TYPE kstbm,
+         konms9  TYPE konms,
+         kbetr9  TYPE kbetr,
+         konwa9  TYPE konwa,
+         kstbm10 TYPE kstbm,
+         konms10 TYPE konms,
+         kbetr10 TYPE kbetr,
+         konwa10 TYPE konwa,
+       END OF gty_konm_scale,
+       BEGIN OF gty_knumh_scale,
+         knumh       TYPE knumh,
+         old_datbi   TYPE datbi,
+         old_datab   TYPE datab,
+         old_kstbw1  TYPE kstbw,
+         old_konws1  TYPE konws,
+         old_kbetr1  TYPE kbetr,
+         old_konwa1  TYPE konwa,
+         old_kstbw2  TYPE kstbw,
+         old_konws2  TYPE konws,
+         old_kbetr2  TYPE kbetr,
+         old_konwa2  TYPE konwa,
+         old_kstbw3  TYPE kstbw,
+         old_konws3  TYPE konws,
+         old_kbetr3  TYPE kbetr,
+         old_konwa3  TYPE konwa,
+         old_kstbw4  TYPE kstbw,
+         old_konws4  TYPE konws,
+         old_kbetr4  TYPE kbetr,
+         old_konwa4  TYPE konwa,
+         old_kstbw5  TYPE kstbw,
+         old_konws5  TYPE konws,
+         old_kbetr5  TYPE kbetr,
+         old_konwa5  TYPE konwa,
+         old_kstbw6  TYPE kstbw,
+         old_konws6  TYPE konws,
+         old_kbetr6  TYPE kbetr,
+         old_konwa6  TYPE konwa,
+         old_kstbw7  TYPE kstbw,
+         old_konws7  TYPE konws,
+         old_kbetr7  TYPE kbetr,
+         old_konwa7  TYPE konwa,
+         old_kstbw8  TYPE kstbw,
+         old_konws8  TYPE konws,
+         old_kbetr8  TYPE kbetr,
+         old_konwa8  TYPE konwa,
+         old_kstbw9  TYPE kstbw,
+         old_konws9  TYPE konws,
+         old_kbetr9  TYPE kbetr,
+         old_konwa9  TYPE konwa,
+         old_kstbw10 TYPE kstbw,
+         old_konws10 TYPE konws,
+         old_kbetr10 TYPE kbetr,
+         old_konwa10 TYPE konwa,
+       END OF gty_knumh_scale,
+       BEGIN OF gty_knumh_qscale,
+         knumh       TYPE knumh,
+         old_datbi   TYPE datbi,
+         old_datab   TYPE datab,
+         old_kstbm1  TYPE kstbm,
+         old_konms1  TYPE konms,
+         old_kbetr1  TYPE kbetr,
+         old_konwa1  TYPE konwa,
+         old_kstbm2  TYPE kstbm,
+         old_konms2  TYPE konms,
+         old_kbetr2  TYPE kbetr,
+         old_konwa2  TYPE konwa,
+         old_kstbm3  TYPE kstbm,
+         old_konms3  TYPE konms,
+         old_kbetr3  TYPE kbetr,
+         old_konwa3  TYPE konwa,
+         old_kstbm4  TYPE kstbm,
+         old_konms4  TYPE konms,
+         old_kbetr4  TYPE kbetr,
+         old_konwa4  TYPE konwa,
+         old_kstbm5  TYPE kstbm,
+         old_konms5  TYPE konms,
+         old_kbetr5  TYPE kbetr,
+         old_konwa5  TYPE konwa,
+         old_kstbm6  TYPE kstbm,
+         old_konms6  TYPE konms,
+         old_kbetr6  TYPE kbetr,
+         old_konwa6  TYPE konwa,
+         old_kstbm7  TYPE kstbm,
+         old_konms7  TYPE konms,
+         old_kbetr7  TYPE kbetr,
+         old_konwa7  TYPE konwa,
+         old_kstbm8  TYPE kstbm,
+         old_konms8  TYPE konms,
+         old_kbetr8  TYPE kbetr,
+         old_konwa8  TYPE konwa,
+         old_kstbm9  TYPE kstbm,
+         old_konms9  TYPE konms,
+         old_kbetr9  TYPE kbetr,
+         old_konwa9  TYPE konwa,
+         old_kstbm10 TYPE kstbm,
+         old_konms10 TYPE konms,
+         old_kbetr10 TYPE kbetr,
+         old_konwa10 TYPE konwa,
+       END OF gty_knumh_qscale,
+* End of Changes by KINSRA1 for ENHC0048693
+       "[ BEGIN -> DE9K900999| DUBSWA02 | 01/10/2019 ]
+       BEGIN OF gty_hamacher_zl,
+         vkorg   TYPE vkorg,      " Sales Org
+         vtweg   TYPE vtweg,      " Distribution Channel
+         spart   TYPE spart,      " Division
+         yyrprpt TYPE yrprpt,     " Retail Price Tier
+       END OF gty_hamacher_zl.
+"[ END -> DE9K900999| DUBSWA02 | 01/10/2019 ]
+*&---------------------------------------------------------------------*
+*&  DATA DECLARATION
+*&---------------------------------------------------------------------*
+DATA: gtt_fcat           TYPE lvc_t_fcat,        "Field Catalog
+      gtt_field_list_tab TYPE dd03ttyp,          "Condition Table field
+      gt_excel           TYPE STANDARD TABLE OF alsmex_tabline, "Excel
+      gv_value           TYPE char100,
+      gs_where           TYPE gty_where,          "Where Clause WA
+      gt_where           TYPE STANDARD TABLE OF gty_where, "Where Clause
+      gt_key_fields      TYPE TABLE OF komg,
+      gt_knumh           TYPE TABLE OF gty_knumh,
+      gt_konp_new        TYPE TABLE OF gty_konp,   "Insert Records KONP
+      gt_konp_upd        TYPE TABLE OF gty_konp,   "Update Records KONP
+      gt_konh_new        TYPE TABLE OF konh,       "Insert Records KONH
+      gt_konh_upd        TYPE TABLE OF konh,       "Update Records KONH
+      gt_atable          TYPE STANDARD TABLE OF gty_atable,
+      gt_konp            TYPE TABLE OF gty_konp,
+      gt_kosrt           TYPE TABLE OF gty_kosrt,   "Search term table
+      gs_t685a           TYPE gty_t685a,            "Condition config
+      gt_vakey           TYPE TABLE OF gty_vakey,
+      gt_xml             TYPE TABLE OF gty_xml_line, "Email
+      gt_tvarvc          TYPE TABLE OF gty_tvarvc,   "TVARVC
+* Begin of Changes by KINSRA1 for ENHC0048693
+      gt_konw            TYPE STANDARD TABLE OF gty_konw,
+      gt_konm            TYPE STANDARD TABLE OF gty_konm,
+      gt_konp_scale      TYPE STANDARD TABLE OF gty_konp_scale,
+      gt_konw_scale      TYPE STANDARD TABLE OF gty_konw_scale,
+      gt_konm_scale      TYPE STANDARD TABLE OF gty_konm_scale,
+      gt_knumh_scale     TYPE STANDARD TABLE OF gty_knumh_scale,
+      gt_knumh_qscale    TYPE STANDARD TABLE OF gty_knumh_qscale,
+      gt_konw_scl_upd    TYPE STANDARD TABLE OF gty_konw_scale,
+      gt_konm_scl_upd    TYPE STANDARD TABLE OF gty_konm_scale,
+* End of Changes by KINSRA1 for ENHC0048693
+      gt_hamacher_zl     TYPE STANDARD TABLE OF gty_hamacher_zl. "INS by DUBSWA02 FT-5458
+*&---------------------------------------------------------------------*
+*&  FIELD-SYMBOL DECLARATION
+*&---------------------------------------------------------------------*
+FIELD-SYMBOLS: <gfs_table>      TYPE STANDARD TABLE,
+               <gfs_tabl1>      TYPE STANDARD TABLE,
+               <gfs_wa>         TYPE any,
+               <gfs_checktable> TYPE STANDARD TABLE,
+               <gfs_field_list> TYPE dd03p,
+               <gfs_vakey>      TYPE gty_vakey,
+               <gfs_konh>       TYPE konh,
+               <gfs_konp>       TYPE gty_konp,
+               "Added by KINSRA1 for ENHC0048693
+               <gfs_konp_scale> TYPE gty_konp_scale,
+* Begin of changes by KINSRA1 for ENHC0048693
+               "[ BEGIN -> DE9K900999| DUBSWA02 | 01/16/2019 ]
+               <gfs_hamacher>   TYPE gty_hamacher_zl.
+"[ END -> DE9K900999| DUBSWA02 | 01/16/2019 ]
+*&---------------------------------------------------------------------*
+*&  Variables
+*&---------------------------------------------------------------------*
+DATA: gv_kzbzg TYPE kzbzg,
+      gv_krech TYPE krech.
+*End of changes by KINSRA1 for ENHC0048693
+*&---------------------------------------------------------------------*
+*&  CLASS DECLARATION
+*&---------------------------------------------------------------------*
+DATA: go_oref     TYPE REF TO cx_root,    "Execptional class
+      go_tabl_chk TYPE REF TO data.
+
+*&---------------------------------------------------------------------*
+*&  CONSTANT DECLARATION
+*&---------------------------------------------------------------------*
+CONSTANTS: gc_knumh         TYPE string VALUE 'KNUMH', "Condition record
+           gc_tab(1)        TYPE c                VALUE
+               cl_abap_char_utilities=>horizontal_tab,
+           gc_kappl         TYPE kappl  VALUE 'V',   "Application
+           gc_double_quotes TYPE c                VALUE '"',
+           gc_equal_to      TYPE c                VALUE '=',
+           gc_doctyp_xls    TYPE so_obj_tp        VALUE 'XLS', "XLS
+           gc_prefix_ss     TYPE string           VALUE 'ss',
+           gc_header_style  TYPE string           VALUE 'Header',
+           gc_blank_style   TYPE string           VALUE 'Blank',
+           gc_tot_style     TYPE string           VALUE 'Totals',
+           gc_strng_format  TYPE string           VALUE 'String',
+           gc_data_style    TYPE string           VALUE 'Data',
+           gc_column        TYPE string           VALUE 'Column',
+           gc_row           TYPE string           VALUE 'Row',
+* Begin of Changes by KINSRA1 for ENHC0048693
+           gc_kzbzg_b       TYPE kzbzg             VALUE 'B',
+           gc_kzbzg_c       TYPE kzbzg             VALUE 'C',
+           gc_krech_a       TYPE krech             VALUE 'A'.
+*  End of Changes by KINSRA1 for ENHC0048693
+" Begin of Change by KUMKES01 for ENHC0100334
+DATA: gv_flag     TYPE c,
+      gv_flag1    TYPE c,
+      gv_flag2    TYPE c,
+      gv_knuma_ag TYPE knuma_ag,
+      gt_konh_d   TYPE TABLE OF gty_vakey.
+
+CONSTANTS: gc_delete TYPE string VALUE 'DELETE'.
+" End of Change by KUMKES01 for ENHC0100334
