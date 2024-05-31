@@ -27,5 +27,5 @@ Root repository for the navigation
 | --- | --- |
 | CDS Annotations Use Case | `DD_CDS_ELEMENT_ANNOTATIONS` & `DD_CDS_HEADER_ANNOTATIONS` |
 
-[link to sample image](https://github.com/zzvikesh/index/assets/167571098/33117c99-ed56-4768-b549-afd5d02bf1be)
-
+# Deep Dive
+[S/4Clinic - Vikesh](https://app.capacities.io/home/09148d84-9bb9-46c2-82e7-69278820ea9c)
