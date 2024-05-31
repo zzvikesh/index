@@ -27,5 +27,5 @@ Root repository for the navigation
 | --- | --- |
 | CDS Annotations Use Case | `DD_CDS_ELEMENT_ANNOTATIONS` & `DD_CDS_HEADER_ANNOTATIONS` |
 
-![image](https://github.com/zzvikesh/index/assets/167571098/33117c99-ed56-4768-b549-afd5d02bf1be)
+https://github.com/zzvikesh/index/assets/167571098/33117c99-ed56-4768-b549-afd5d02bf1be
 
