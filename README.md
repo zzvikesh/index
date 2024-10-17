@@ -12,5 +12,5 @@ Index to navigate through repository.
 # Cheat Sheets
 
 
-# Best Practices
+# Development Guidelines
 
