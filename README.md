@@ -13,4 +13,5 @@ Index to navigate through repository.
 
 
 # Development Guidelines
+Released API
 
