@@ -1,3 +1,11 @@
+# Documentation
+## Short Texts
+https://help.sap.com/docs/abap-cloud/abap-development-tools-user-guide/short-texts?version=sap_btp
+## ABAP Doc
+https://help.sap.com/docs/abap-cloud/abap-development-tools-user-guide/abap-doc-comments?version=sap_btp
+## Knowledge Transfer Document (KTD)
+https://help.sap.com/docs/abap-cloud/abap-development-tools-user-guide/knowledge-transfer-documents?version=sap_btp
+
 # Fiori Launchpad (FLP)
 
 ## Content Management
