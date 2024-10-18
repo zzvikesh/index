@@ -12,7 +12,10 @@ https://help.sap.com/docs/abap-cloud/abap-development-tools-user-guide/knowledge
 ## Content Management
 
 # Released APIs
+Translations
 https://help.sap.com/docs/btp/sap-business-technology-platform/maintain-translations
+XCO
+https://help.sap.com/docs/btp/sap-business-technology-platform/c154dffe892b4d9ea4566722f0bcd5f1.html
 
 # Embedded Analytics
 
