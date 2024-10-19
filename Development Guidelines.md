@@ -20,6 +20,9 @@ https://help.sap.com/docs/btp/sap-business-technology-platform/c154dffe892b4d9ea
 bapi_material_savereplica -> I_PRODUCTTP_2 (Behavior Definition)
 From Capacities Another FM -> Class.
 
+cl_abap_random_int
+CL_ABAP_DYN_PRG
+
 # Embedded Analytics
 
 # RAP (Restful ABAP)
