@@ -17,6 +17,9 @@ https://help.sap.com/docs/btp/sap-business-technology-platform/maintain-translat
 XCO
 https://help.sap.com/docs/btp/sap-business-technology-platform/c154dffe892b4d9ea4566722f0bcd5f1.html
 
+bapi_material_savereplica -> I_PRODUCTTP_2 (Behavior Definition)
+From Capacities Another FM -> Class.
+
 # Embedded Analytics
 
 # RAP (Restful ABAP)
